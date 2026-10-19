@@ -1,0 +1,175 @@
+name: Autograding Tests
+
+on:
+  push:
+    paths:
+      - 'assignment.py'
+      - 'test_assignment.py'
+  workflow_dispatch:
+
+permissions:
+  checks: write
+  actions: read
+  contents: read
+
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install pytest
+        run: pip install -r requirements.txt
+
+      - name: Ex 1 - Stack set up
+        id: ex1_initial_stack
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Ex 1 - Stack set up
+          command: pytest test_assignment.py::test1_initial_stack
+          timeout: 2
+          max-score: 1
+
+      - name: Ex 1 - Push
+        id: ex1_push
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Ex 1 - Push
+          command: pytest test_assignment.py::test1_push
+          timeout: 2
+          max-score: 1
+
+      - name: Ex 1 - Push when full
+        id: ex1_push_when_full
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Ex 1 - Push when full
+          command: pytest test_assignment.py::test1_push_when_full
+          timeout: 2
+          max-score: 1
+
+      - name: Ex 1 - Pop
+        id: ex1_pop
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Ex 1 - Pop
+          command: pytest test_assignment.py::test1_pop
+          timeout: 2
+          max-score: 1
+
+      - name: Ex 1 - Pop when empty
+        id: ex1_pop_when_empty
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Ex 1 - Pop when empty
+          command: pytest test_assignment.py::test1_pop_when_empty
+          timeout: 2
+          max-score: 1
+
+      - name: Ex 1 - Uses TopOfStack
+        id: ex1_uses_top_of_stack
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Ex 1 - Uses TopOfStack
+          command: pytest test_assignment.py::test1_uses_top_of_stack
+          timeout: 2
+          max-score: 1
+
+      - name: Ex 2 - Peek
+        id: ex2_peek
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Ex 2 - Peek
+          command: pytest test_assignment.py::test2_peek
+          timeout: 2
+          max-score: 1
+
+      - name: Ex 2 - IsEmpty and Size
+        id: ex2_is_empty_and_size
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Ex 2 - IsEmpty and Size
+          command: pytest test_assignment.py::test2_is_empty_and_size
+          timeout: 2
+          max-score: 1
+
+      - name: Ex 2 - ReverseList
+        id: ex2_reverse_list
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Ex 2 - ReverseList
+          command: pytest test_assignment.py::test2_reverse_list
+          timeout: 2
+          max-score: 1
+
+      - name: Ex 2 - ReverseList when full
+        id: ex2_reverse_list_when_full
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Ex 2 - ReverseList when full
+          command: pytest test_assignment.py::test2_reverse_list_when_full
+          timeout: 2
+          max-score: 1
+
+      - name: Ex 3 - Balanced
+        id: ex3_balanced
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Ex 3 - Balanced
+          command: pytest test_assignment.py::test3_balanced
+          timeout: 2
+          max-score: 1
+
+      - name: Ex 3 - Not balanced
+        id: ex3_not_balanced
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Ex 3 - Not balanced
+          command: pytest test_assignment.py::test3_not_balanced
+          timeout: 2
+          max-score: 1
+
+      - name: Ex 3 - Starts with empty stack
+        id: ex3_starts_empty
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Ex 3 - Starts with empty stack
+          command: pytest test_assignment.py::test3_starts_empty
+          timeout: 2
+          max-score: 1
+
+      - name: Ex 3 - Stack full
+        id: ex3_stack_full
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Ex 3 - Stack full
+          command: pytest test_assignment.py::test3_stack_full
+          timeout: 2
+          max-score: 1
+
+      - name: Autograding Reporter
+        uses: classroom-resources/autograding-grading-reporter@v1
+        env:
+          EX1_INITIAL_STACK_RESULTS: "${{ steps.ex1_initial_stack.outputs.result }}"
+          EX1_PUSH_RESULTS: "${{ steps.ex1_push.outputs.result }}"
+          EX1_PUSH_WHEN_FULL_RESULTS: "${{ steps.ex1_push_when_full.outputs.result }}"
+          EX1_POP_RESULTS: "${{ steps.ex1_pop.outputs.result }}"
+          EX1_POP_WHEN_EMPTY_RESULTS: "${{ steps.ex1_pop_when_empty.outputs.result }}"
+          EX1_USES_TOP_OF_STACK_RESULTS: "${{ steps.ex1_uses_top_of_stack.outputs.result }}"
+          EX2_PEEK_RESULTS: "${{ steps.ex2_peek.outputs.result }}"
+          EX2_IS_EMPTY_AND_SIZE_RESULTS: "${{ steps.ex2_is_empty_and_size.outputs.result }}"
+          EX2_REVERSE_LIST_RESULTS: "${{ steps.ex2_reverse_list.outputs.result }}"
+          EX2_REVERSE_LIST_WHEN_FULL_RESULTS: "${{ steps.ex2_reverse_list_when_full.outputs.result }}"
+          EX3_BALANCED_RESULTS: "${{ steps.ex3_balanced.outputs.result }}"
+          EX3_NOT_BALANCED_RESULTS: "${{ steps.ex3_not_balanced.outputs.result }}"
+          EX3_STARTS_EMPTY_RESULTS: "${{ steps.ex3_starts_empty.outputs.result }}"
+          EX3_STACK_FULL_RESULTS: "${{ steps.ex3_stack_full.outputs.result }}"
+        with:
+          runners: ex1_initial_stack,ex1_push,ex1_push_when_full,ex1_pop,ex1_pop_when_empty,ex1_uses_top_of_stack,ex2_peek,ex2_is_empty_and_size,ex2_reverse_list,ex2_reverse_list_when_full,ex3_balanced,ex3_not_balanced,ex3_starts_empty,ex3_stack_full
