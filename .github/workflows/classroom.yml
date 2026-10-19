@@ -28,148 +28,128 @@ jobs:
       - name: Install pytest
         run: pip install -r requirements.txt
 
-      - name: Ex 1 - Stack set up
-        id: ex1_initial_stack
+      - name: Ex 1 - Find last
+        id: ex1_find_last
         uses: classroom-resources/autograding-command-grader@v1
         with:
-          test-name: Ex 1 - Stack set up
-          command: pytest test_assignment.py::test1_initial_stack
+          test-name: Ex 1 - Find last
+          command: pytest test_assignment.py::test1_find_last
           timeout: 2
           max-score: 1
 
-      - name: Ex 1 - Push
-        id: ex1_push
+      - name: Ex 1 - Not found
+        id: ex1_not_found
         uses: classroom-resources/autograding-command-grader@v1
         with:
-          test-name: Ex 1 - Push
-          command: pytest test_assignment.py::test1_push
+          test-name: Ex 1 - Not found
+          command: pytest test_assignment.py::test1_not_found
           timeout: 2
           max-score: 1
 
-      - name: Ex 1 - Push when full
-        id: ex1_push_when_full
+      - name: Ex 1 - No shortcuts
+        id: ex1_no_shortcuts
         uses: classroom-resources/autograding-command-grader@v1
         with:
-          test-name: Ex 1 - Push when full
-          command: pytest test_assignment.py::test1_push_when_full
+          test-name: Ex 1 - No shortcuts
+          command: pytest test_assignment.py::test1_no_shortcuts
           timeout: 2
           max-score: 1
 
-      - name: Ex 1 - Pop
-        id: ex1_pop
+      - name: Ex 2 - Found
+        id: ex2_found
         uses: classroom-resources/autograding-command-grader@v1
         with:
-          test-name: Ex 1 - Pop
-          command: pytest test_assignment.py::test1_pop
+          test-name: Ex 2 - Found
+          command: pytest test_assignment.py::test2_found
           timeout: 2
           max-score: 1
 
-      - name: Ex 1 - Pop when empty
-        id: ex1_pop_when_empty
+      - name: Ex 2 - Not found
+        id: ex2_not_found
         uses: classroom-resources/autograding-command-grader@v1
         with:
-          test-name: Ex 1 - Pop when empty
-          command: pytest test_assignment.py::test1_pop_when_empty
+          test-name: Ex 2 - Not found
+          command: pytest test_assignment.py::test2_not_found
           timeout: 2
           max-score: 1
 
-      - name: Ex 1 - Uses TopOfStack
-        id: ex1_uses_top_of_stack
+      - name: Ex 2 - Uses binary search
+        id: ex2_efficiency
         uses: classroom-resources/autograding-command-grader@v1
         with:
-          test-name: Ex 1 - Uses TopOfStack
-          command: pytest test_assignment.py::test1_uses_top_of_stack
+          test-name: Ex 2 - Uses binary search
+          command: pytest test_assignment.py::test2_efficiency
           timeout: 2
           max-score: 1
 
-      - name: Ex 2 - Peek
-        id: ex2_peek
+      - name: Ex 3 - New product
+        id: ex3_new_product
         uses: classroom-resources/autograding-command-grader@v1
         with:
-          test-name: Ex 2 - Peek
-          command: pytest test_assignment.py::test2_peek
+          test-name: Ex 3 - New product
+          command: pytest test_assignment.py::test3_new_product
           timeout: 2
           max-score: 1
 
-      - name: Ex 2 - IsEmpty and Size
-        id: ex2_is_empty_and_size
+      - name: Ex 3 - Sell
+        id: ex3_sell
         uses: classroom-resources/autograding-command-grader@v1
         with:
-          test-name: Ex 2 - IsEmpty and Size
-          command: pytest test_assignment.py::test2_is_empty_and_size
+          test-name: Ex 3 - Sell
+          command: pytest test_assignment.py::test3_sell
           timeout: 2
           max-score: 1
 
-      - name: Ex 2 - ReverseList
-        id: ex2_reverse_list
+      - name: Ex 3 - Restock and value
+        id: ex3_restock_and_value
         uses: classroom-resources/autograding-command-grader@v1
         with:
-          test-name: Ex 2 - ReverseList
-          command: pytest test_assignment.py::test2_reverse_list
+          test-name: Ex 3 - Restock and value
+          command: pytest test_assignment.py::test3_restock_and_value
           timeout: 2
           max-score: 1
 
-      - name: Ex 2 - ReverseList when full
-        id: ex2_reverse_list_when_full
+      - name: Ex 4 - Add and count
+        id: ex4_add_and_count
         uses: classroom-resources/autograding-command-grader@v1
         with:
-          test-name: Ex 2 - ReverseList when full
-          command: pytest test_assignment.py::test2_reverse_list_when_full
+          test-name: Ex 4 - Add and count
+          command: pytest test_assignment.py::test4_add_and_count
           timeout: 2
           max-score: 1
 
-      - name: Ex 3 - Balanced
-        id: ex3_balanced
+      - name: Ex 4 - Find product
+        id: ex4_find_product
         uses: classroom-resources/autograding-command-grader@v1
         with:
-          test-name: Ex 3 - Balanced
-          command: pytest test_assignment.py::test3_balanced
+          test-name: Ex 4 - Find product
+          command: pytest test_assignment.py::test4_find_product
           timeout: 2
           max-score: 1
 
-      - name: Ex 3 - Not balanced
-        id: ex3_not_balanced
+      - name: Ex 4 - Total value
+        id: ex4_total_value
         uses: classroom-resources/autograding-command-grader@v1
         with:
-          test-name: Ex 3 - Not balanced
-          command: pytest test_assignment.py::test3_not_balanced
-          timeout: 2
-          max-score: 1
-
-      - name: Ex 3 - Starts with empty stack
-        id: ex3_starts_empty
-        uses: classroom-resources/autograding-command-grader@v1
-        with:
-          test-name: Ex 3 - Starts with empty stack
-          command: pytest test_assignment.py::test3_starts_empty
-          timeout: 2
-          max-score: 1
-
-      - name: Ex 3 - Stack full
-        id: ex3_stack_full
-        uses: classroom-resources/autograding-command-grader@v1
-        with:
-          test-name: Ex 3 - Stack full
-          command: pytest test_assignment.py::test3_stack_full
+          test-name: Ex 4 - Total value
+          command: pytest test_assignment.py::test4_total_value
           timeout: 2
           max-score: 1
 
       - name: Autograding Reporter
         uses: classroom-resources/autograding-grading-reporter@v1
         env:
-          EX1_INITIAL_STACK_RESULTS: "${{ steps.ex1_initial_stack.outputs.result }}"
-          EX1_PUSH_RESULTS: "${{ steps.ex1_push.outputs.result }}"
-          EX1_PUSH_WHEN_FULL_RESULTS: "${{ steps.ex1_push_when_full.outputs.result }}"
-          EX1_POP_RESULTS: "${{ steps.ex1_pop.outputs.result }}"
-          EX1_POP_WHEN_EMPTY_RESULTS: "${{ steps.ex1_pop_when_empty.outputs.result }}"
-          EX1_USES_TOP_OF_STACK_RESULTS: "${{ steps.ex1_uses_top_of_stack.outputs.result }}"
-          EX2_PEEK_RESULTS: "${{ steps.ex2_peek.outputs.result }}"
-          EX2_IS_EMPTY_AND_SIZE_RESULTS: "${{ steps.ex2_is_empty_and_size.outputs.result }}"
-          EX2_REVERSE_LIST_RESULTS: "${{ steps.ex2_reverse_list.outputs.result }}"
-          EX2_REVERSE_LIST_WHEN_FULL_RESULTS: "${{ steps.ex2_reverse_list_when_full.outputs.result }}"
-          EX3_BALANCED_RESULTS: "${{ steps.ex3_balanced.outputs.result }}"
-          EX3_NOT_BALANCED_RESULTS: "${{ steps.ex3_not_balanced.outputs.result }}"
-          EX3_STARTS_EMPTY_RESULTS: "${{ steps.ex3_starts_empty.outputs.result }}"
-          EX3_STACK_FULL_RESULTS: "${{ steps.ex3_stack_full.outputs.result }}"
+          EX1_FIND_LAST_RESULTS: "${{ steps.ex1_find_last.outputs.result }}"
+          EX1_NOT_FOUND_RESULTS: "${{ steps.ex1_not_found.outputs.result }}"
+          EX1_NO_SHORTCUTS_RESULTS: "${{ steps.ex1_no_shortcuts.outputs.result }}"
+          EX2_FOUND_RESULTS: "${{ steps.ex2_found.outputs.result }}"
+          EX2_NOT_FOUND_RESULTS: "${{ steps.ex2_not_found.outputs.result }}"
+          EX2_EFFICIENCY_RESULTS: "${{ steps.ex2_efficiency.outputs.result }}"
+          EX3_NEW_PRODUCT_RESULTS: "${{ steps.ex3_new_product.outputs.result }}"
+          EX3_SELL_RESULTS: "${{ steps.ex3_sell.outputs.result }}"
+          EX3_RESTOCK_AND_VALUE_RESULTS: "${{ steps.ex3_restock_and_value.outputs.result }}"
+          EX4_ADD_AND_COUNT_RESULTS: "${{ steps.ex4_add_and_count.outputs.result }}"
+          EX4_FIND_PRODUCT_RESULTS: "${{ steps.ex4_find_product.outputs.result }}"
+          EX4_TOTAL_VALUE_RESULTS: "${{ steps.ex4_total_value.outputs.result }}"
         with:
-          runners: ex1_initial_stack,ex1_push,ex1_push_when_full,ex1_pop,ex1_pop_when_empty,ex1_uses_top_of_stack,ex2_peek,ex2_is_empty_and_size,ex2_reverse_list,ex2_reverse_list_when_full,ex3_balanced,ex3_not_balanced,ex3_starts_empty,ex3_stack_full
+          runners: ex1_find_last,ex1_not_found,ex1_no_shortcuts,ex2_found,ex2_not_found,ex2_efficiency,ex3_new_product,ex3_sell,ex3_restock_and_value,ex4_add_and_count,ex4_find_product,ex4_total_value
