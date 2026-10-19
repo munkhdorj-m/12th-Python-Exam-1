@@ -1,43 +1,22 @@
 # You can remove 'pass' if you written code in the function
-# Do NOT use .append() or .pop() inside Push() and Pop() - move TopOfStack yourself.
 
 # Exercise 1
-Stack = []
-TopOfStack = -1
-# Write code here to fill Stack with 10 elements, all -1
-
-def Push(DataToPush):
-    # Write your code here
-    pass
-
-
-def Pop():
+def find_last(data, target):
     # Write your code here
     pass
 
 
 # Exercise 2
-def Peek():
-    # Write your code here
-    pass
-
-
-def IsEmpty():
-    # Write your code here
-    pass
-
-
-def Size():
-    # Write your code here
-    pass
-
-
-def ReverseList(Numbers):
+def binary_search(data, target):
     # Write your code here
     pass
 
 
 # Exercise 3
-def Balanced(Expression):
-    # Write your code here
+class Product:
+    pass
+
+
+# Exercise 4
+class Shop:
     pass
