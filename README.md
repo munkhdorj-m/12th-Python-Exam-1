@@ -1,143 +1,171 @@
-# Python Stack
+# Exam
 
-Read the Abstract Data Types lecture (Stack section) before you start.
-Abstract Data Types Lecture:
-https://drive.google.com/file/d/1jXGQdSvuUYjGXl-PUuHMUzKWEBGQoARL/view?usp=sharing
+**Rules**
 
-**Rules for this assignment**
-
-- Do **not** use `.append()` or `.pop()` inside `Push()` and `Pop()`.
-  Change `TopOfStack` yourself and use `Stack[TopOfStack]`. The tests check for this.
-- Functions **return** their answer. Only print when the exercise says so.
-- Use `global Stack, TopOfStack` in every function that changes them.
+- Write every search yourself. Do **not** use `.index()`, `.count()` or
+  `.reverse()`. (`for ... in` loops are fine.)
+- Exercise 2 must use **binary search** — a linear scan will lose marks even
+  if the answer is correct.
+- Every attribute must be created inside `__init__` using `self.something = ...`
+- When a function or method says it **returns** something, use `return` — do not `print`.
 
 ---
 
-## Exercise 1
+## Exercise 1 (3 marks)
 
 **Problem:**
 
-Build a stack that holds **10** integers.
+`find_last(data, target)`
 
-- `Stack` → a global array of **10** elements, all set to `-1`
-- `TopOfStack` → a global integer, set to `-1` (the stack is empty)
+Use **linear search** to return the index of the **last** place where
+`target` appears in `data`. Return `-1` if it is not there.
 
-Then write two functions:
+Do not change the list.
 
-- `Push(DataToPush)`
-  - If the stack is full (`TopOfStack` is 9), return `False`
-  - Otherwise add 1 to `TopOfStack`, store `DataToPush` at `Stack[TopOfStack]`,
-    and return `True`
+**Example:**
 
-- `Pop()`
-  - If the stack is empty (`TopOfStack` is -1), return `-1`
-  - Otherwise return the item at `Stack[TopOfStack]`, and take 1 off `TopOfStack`
+    Example Input:
+        data   = [4, 2, 4, 9, 4]
+        target = 4
 
-**Careful with the order in Pop():** read the item **first**, then move `TopOfStack`.
+    Program Output:
+        4
+
+    Example Input:
+        data   = [4, 2, 4, 9]
+        target = 4
+
+    Program Output:
+        2
+
+    Example Input:
+        data   = [10, 20, 30]
+        target = 99
+
+    Program Output:
+        -1
+
+*Hint:* do not stop at the first match — keep going to the end and remember
+the last match you saw.
+
+---
+
+## Exercise 2 (3 marks)
+
+**Problem:**
+
+`binary_search(data, target)`
+
+`data` is a **sorted** list. Use **binary search** to return the index of
+`target`, or `-1` if it is not in the list.
+
+**Example:**
+
+    Example Input:
+        data   = [1, 3, 5, 7, 9, 11]
+        target = 7
+
+    Program Output:
+        3
+
+    Example Input:
+        data   = [1, 3, 5, 7, 9, 11]
+        target = 4
+
+    Program Output:
+        -1
+
+    Example Input:
+        data   = []
+        target = 1
+
+    Program Output:
+        -1
+
+Your function will also be tested on a list of 100,000 numbers.
+
+---
+
+## Exercise 3 (3 marks)
+
+**Problem:**
+
+- Create a `Product` class for an item in a shop.
+    - Attributes:
+        - `name`
+        - `price` → the price of **one** item
+        - `stock` → how many are in the shop
+    - Methods:
+        - `sell(amount)` → takes `amount` off `stock` and **returns** `True`.
+          If `amount` is `0` or less, or more than the stock, nothing changes
+          and it **returns** `False`. Selling exactly all the stock is allowed.
+        - `restock(amount)` → adds `amount` to `stock` and **returns** `True`.
+          If `amount` is `0` or less, nothing changes and it **returns** `False`.
+        - `value()` → **returns** `price` × `stock`
 
 **Example:**
 
     Input:
-      print(Push(10))
-      print(Push(20))
-      print(Push(30))
-      print(Pop())
-      print(Pop())
-      print(TopOfStack)
+      p = Product("Pen", 500, 20)
+      print(p.sell(3))
+      print(p.sell(50))
+      print(p.stock)
+      print(p.restock(-5))
+      print(p.value())
 
     Output:
       True
-      True
-      True
-      30
-      20
-      0
-
-    Input (on an empty stack):
-      print(Pop())
-
-    Output:
-      -1
-
----
-
-## Exercise 2
-
-**Problem:**
-
-Write four more functions that use the stack from Exercise 1.
-
-- `Peek()` → returns the top item **without removing it**. Returns `-1` if the stack is empty.
-- `IsEmpty()` → returns `True` if the stack is empty, otherwise `False`.
-- `Size()` → returns **how many items** are in the stack.
-- `ReverseList(Numbers)` → `Numbers` is a list of integers.
-  - Push each number onto the stack.
-  - If `Push()` returns `False`, print `Stack full` **once** and stop pushing.
-  - Then pop **every** item off the stack into a new list, and return that list.
-
-*Hint:* `Size()` is **not** `len(Stack)` — the array always has 10 elements.
-Think about what `TopOfStack` tells you.
-
-**Example:**
-
-    Input:
-      Push(8)
-      Push(3)
-      print(Peek())
-      print(Size())
-      print(IsEmpty())
-
-    Output:
-      3
-      2
       False
-
-    Input (on an empty stack):
-      print(ReverseList([5, 9, 2, 7]))
-
-    Output:
-      [7, 2, 9, 5]
-
-    Input (on an empty stack):
-      print(ReverseList([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]))
-
-    Output:
-      Stack full
-      [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
-
-Only the first 10 numbers fit. Numbers 11 and 12 are never pushed.
+      17
+      False
+      8500
 
 ---
 
-## Exercise 3
+## Exercise 4 (3 marks)
 
 **Problem:**
 
-`Balanced(Expression)`
+A `Shop` stores `Product` **objects** from Exercise 3.
 
-`Expression` is a string. Return `True` if its brackets are **balanced**,
-otherwise `False`.
+- Create a `Shop` class.
+    - Attributes:
+        - `name`
+        - `products` → starts as an **empty list**
+    - Methods:
+        - `add_product(product)` → adds a `Product` object to `products`
+        - `count()` → **returns** how many products the shop has
+        - `find_product(name)` → use **linear search** to find the product with
+          that name and **return the Product object**. If there is none,
+          **return** `None`.
+        - `total_value()` → **returns** the total `value()` of all products.
+          An empty shop returns `0`.
 
-Brackets are balanced when every opening bracket `(` `[` `{` has a matching
-closing bracket `)` `]` `}` of the **same type**, closed in the **right order**.
-All other characters are ignored.
-
-Use your stack:
-
-1. **Empty the stack first** by setting `TopOfStack` to `-1`.
-2. Go through the string one character at a time.
-3. Opening bracket → `Push()` it. If `Push()` returns `False`, return `False`.
-4. Closing bracket → `Pop()` the top item. If it is **not** the matching opening
-   bracket, return `False`. (If the stack was empty, `Pop()` returns `-1` — that doesn't match either.)
-5. At the end, the brackets are balanced **only if the stack is empty**.
+**Important:** create the empty list inside `__init__`. Every shop must have
+its own list.
 
 **Example:**
 
-    Input:                            Output:
-      Balanced("([]{})")                True
-      Balanced("(a + b) * [c - d]")     True
-      Balanced("([)]")                  False    ) closes [ - wrong type
-      Balanced("(()")                   False    one ( is never closed
-      Balanced("())")                   False    the last ) has nothing to close
+    Input:
+      shop = Shop("School Shop")
+      shop.add_product(Product("Pen", 500, 20))
+      shop.add_product(Product("Ruler", 800, 5))
+
+      print(shop.count())
+      print(shop.find_product("Ruler").price)
+      print(shop.find_product("Eraser"))
+      print(shop.total_value())
+
+    Output:
+      2
+      800
+      None
+      14000
+
+`total_value()` is 500 × 20 + 800 × 5 = 14000.
 
 ---
+
+## How to test your work
+
+    pytest -v
